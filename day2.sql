@@ -1,4 +1,4 @@
---Personel isminde bir tablo oluşturalım
+--Personel isminde bir tablo olusturalim
 create table personel(
 pers_id int,
 isim varchar(30),
@@ -7,14 +7,14 @@ maas int,
 sirket varchar(20),
 adres varchar(50)
 );
---Varolan personel tablosundan pers_id,sehir,adres fieldlarına sahip personel_adres adında yeni tablo olusturalım
-create table personel_adres
+--varolan personel tablosundan pers_id,sehir,adres fieldlarina sahip personel_adres adinda yeni bir tablo olusturalim.
+CREATE table personel_adres
 as
 select pers_id, sehir, adres from personel;
-select * from personel
--- DML --> Data Manupulation Lang.
--- INSERT - UPDATE - DELETE
---Tabloya veri ekleme, tablodan veri güncelleme ve silme işlemlerinde kullanılan komutlar
+SELECT * from personel
+--DML --> Data Manupulation Lang.
+--INSERT - UPDATE - DELETE
+--Tabloya veri ekleme, tablodan veri güncelleme ve silme islemlerinde kullanilan komutlar
 --INSERT
 create table student
 (
@@ -26,18 +26,18 @@ INSERT into student VALUES ('1001','Ali Can',25);
 INSERT into student VALUES ('1002','Veli Can',35);
 INSERT into student VALUES ('1003','Ayse Can',45);
 INSERT into student VALUES ('1004','Derya Can',55);
---Tabloya parçalı veri ekleme
+--tabloya veri ekleme
 insert into student(st_name,age) values ('Murat Can',65);
---DQL --> Data Query Lang.
+--DQL --> Data Query Lang
 --SELECT
 select * from student;
-select st_name from student;
---SELECT KOMUTU WHERE KOŞULU
-select * from student WHERE age>35;
+SELECT st_name from student;
+--SELECT KOMUTU WHERE KOSULU
+select *from student WHERE age>35;
 --TCL - Transaction Control Lang.
---Begin - Savepoint - rollback - commit
---Transaction veritabanı sistemlerinde bir işlem başladığında başlar ve işlem bitince sona erer
---Bu işlemler veri tabanı oluşturma, veri silme, veri güncelleme, veriyi geri getirme gibi işlemler olabilir
+--Begin - Savepoint - rollback -commit
+-- Transaction veritabanı sistemlerin bir islem basladiginda baslar ve islem bitince sona ere
+--bu islemle veritabani olusturma,veri guncellem,veriyi geri getirme gibi islemler olabilir
 CREATE TABLE ogrenciler2
 (
 id serial,
@@ -45,9 +45,8 @@ isim VARCHAR(50),
 veli_isim VARCHAR(50),
 yazili_notu real
 );
-Begin;
-insert into ogrenciler2 VALUES (default,'Ali Can','Hasan Can',75.5);
-insert into ogrenciler2 VALUES (default,'Canan Gül','Ayşe Şen',90.5);
+insert into ogrenciler2 VALUES(default,'Ali Can','Hasan Can',75.5);
+insert into ogrenciler2 VALUES(default,'Canan Gul','Ayse Sen',90.5);
 savepoint x;
 insert into ogrenciler2 VALUES (default,'Kemal Can','Ahmet Can',85.5);
 insert into ogrenciler2 VALUES (default,'Ahmet Şen','Ayşe Can',65.5);
@@ -109,24 +108,17 @@ maas int,
 sirket varchar(20),
 adres varchar(50)
 );
-
 select * from isciler;
-
 -- Personel tablosuna cinsiyet Varchar(20) ve yas int seklinde yeni sutunlar ekleyiniz
 alter table personel add cinsiyet varchar(20), add yas int;
-
 --Personel tablosundan sirket field'ini siliniz
-alter TABLE personel drop column sirket;
-
+alter table personel drop column sirket;
 -- Personel tablosundaki sehir sutununun adını ulke olarak değiştirelim
-alter TABLE personel RENAME COLUMN sehir to ulke;
-
+alter table personel RENAME column sehir to ulke;
 -- Personel tablosunun adını isciler olarak değiştiriniz
 alter table personel rename to isciler;
-
 -- DDL - DROP komutu
 DROP table isciler;
-
 -- CONSTRANINT -- Kısıtlamalar
 -- Primary Key --> Bir sutunun NULL içermemesini ve sutundaki verilerin BENZERSİZ olmasını sağlar (NOT NULL - UNIQUE)
 -- FOREGIN KEY --> Başka bir tablodaki PRİMARY KEY'i referans göstermek için kullanılır. Böylelikle, tablolar arasında ilişki kurmuş oluruz.
@@ -134,53 +126,42 @@ DROP table isciler;
 -- NOT NULL --> Bir sutunun NULL içermemesini yani boş olmamasını sağlar
 -- NOT NULL kısıtlaması için CONSTRAINT ismi tanımlanmaz. Bu kısıtlama veri türünden hemen sonra yerleştirilir
 -- CHECK --> Bir sutuna yerleştirilebilecek değer aralığını sınırlamak için kullanılır.
-
 CREATE TABLE calisanlar
 (
 id CHAR(5) PRIMARY KEY, -- not null + unique
-isim VARCHAR(50) UNIQUE,
-maas int NOT NULL,
+isim VARCHAR(50) UNIQUE, -- UNIQUE --> Bir sutundaki tüm değerlerin BENZERSİZ yani tek olmasını sağlar
+maas int NOT NULL, -- NOT NULL --> Bir sutunun NULL içermemesini yani boş olmamasını sağlar
 ise_baslama DATE
 );
-
-select * from calisanlar;
-
-CREATE TABLE calisanlar2(
-id CHAR(5),
-isim VARCHAR(50),
-maas int NOT NULL,
-ise_baslama DATE,
-CONSTRAINT pk_id PRIMARY KEY(id),
-CONSTRAINT ism_unq UNIQUE(isim)
-);
-
 INSERT INTO calisanlar VALUES('10002', 'Mehmet Yılmaz' ,12000, '2018-04-14');
 INSERT INTO calisanlar VALUES('10008', null, 5000, '2018-04-14');
-INSERT INTO calisanlar VALUES('10010', Mehmet Yılmaz, 5000, '2018-04-14'); --Unique
+--INSERT INTO calisanlar VALUES('10010', Mehmet Yılmaz, 5000, '2018-04-14'); --Unique
 INSERT INTO calisanlar VALUES('10004', 'Veli Han', 5000, '2018-04-14');
 INSERT INTO calisanlar VALUES('10005', 'Mustafa Ali', 5000, '2018-04-14');
-INSERT INTO calisanlar VALUES('10006', 'Canan Yaş', NULL, '2019-04-12'); --NOT NULL
+--INSERT INTO calisanlar VALUES('10006', 'Canan Yaş', NULL, '2019-04-12'); --NOT NULL
 INSERT INTO calisanlar VALUES('10003', 'CAN', 5000, '2018-04-14');
-INSERT INTO calisanlar VALUES('10007', 'CAN', 5000, '2018-04-14'); --UNIQUE
-INSERT INTO calisanlar VALUES('10009', 'cem', '', '2018-04-14'); --NOT NULL
+--INSERT INTO calisanlar VALUES('10007', 'CAN', 5000, '2018-04-14'); --UNIQUE
+--INSERT INTO calisanlar VALUES('10009', 'cem', '', '2018-04-14'); --NOT NULL
 INSERT INTO calisanlar VALUES('', 'osman', 2000, '2018-04-14');
-INSERT INTO calisanlar VALUES('', 'osman can', 2000, '2018-04-14'); --PRIMARY KEY
-INSERT INTO calisanlar VALUES( '10002', 'ayse Yılmaz' ,12000, '2018-04-14'); --PRIMARY KEY
-INSERT INTO calisanlar VALUES( null, 'filiz ' ,12000, '2018-04-14'); -- PRIMARY KEY
-
-select * from calisanlar;
-
--- FOREIGN KEY --
-CREATE TABLE adresler (
+--INSERT INTO calisanlar VALUES('', 'osman can', 2000, '2018-04-14'); --PRIMARY KEY
+--INSERT INTO calisanlar VALUES( '10002', 'ayse Yılmaz' ,12000, '2018-04-14'); --PRIMARY KEY
+--INSERT INTO calisanlar VALUES( null, 'filiz ' ,12000, '2018-04-14'); -- PRIMARY KEY
+select * from calisanlar
+-- FOREIGN KEY--
+CREATE TABLE adresler
+(
 adres_id char(5),
-sokak varchar(20),	
-cadde varchar(30),					 
-sehir varchar(20),					 
+sokak varchar(20),
+cadde varchar(30),
+sehir varchar(20),
 CONSTRAINT id_fk FOREIGN KEY (adres_id) REFERENCES calisanlar(id)
 );
-
 INSERT INTO adresler VALUES('10003','Mutlu Sok', '40.Cad.','IST');
 INSERT INTO adresler VALUES('10003','Can Sok', '50.Cad.','Ankara');
 INSERT INTO adresler VALUES('10002','Ağa Sok', '30.Cad.','Antep');
-
 select * from adresler;
+INSERT INTO adresler VALUES ('10012','Ağa Sok','30. Cad.','Antep');
+--Parent dosyada olmayan id ile child tabloya ekleme yapamayız
+INSERT INTO adresler VALUES (NULL,'Ağa Sok.','30.Cad.','Antep');
+--Calisanlar id ile adresler tablosundaki adres_id ile eslesenlere bakmak icin
+select *from calisanlar,adresler WHERE calisanlar.is = adresler.adres_id;
