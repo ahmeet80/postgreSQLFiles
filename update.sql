@@ -63,5 +63,9 @@ update urunler
 set urun_isim = (select firma_ismi from tedarikciler where irtibat_ismi='Adam Eve')
 where musteri_isim = 'Ali Bak';
 
+select * from urunler
 
-
+-- Urunler tablosunda laptop satin alan musterilerin ismini, firma_ismi Apple’in irtibat_isim'i ile degistirin.
+update urunler
+set musteri_isim  = (select irtibat_ismi from tedarikciler where urun_isim='Apple')
+where urun_isim = 'Laptop';  -- tekrardan bak !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
