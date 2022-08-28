@@ -1,3 +1,16 @@
+create table personel
+(
+id char(4),
+isim varchar(50),
+maas int
+);
+insert into personel values('1007', 'Ali Cenn', 70007);
+insert into personel values('1001', 'Ali Can', 70000);
+insert into personel values('1002', 'Veli Mert', 85000);
+insert into personel values('1003', 'Ayşe Tan', 65000);
+insert into personel values('1004', 'Derya Soylu', 95000);
+insert into personel values('1005', 'Yavuz Bal', 80000);
+insert into personel values('1006', 'Sena Beyaz', 100000);
 /*
 SELECT - LIKE kosulu
 LIKE : Sorgulama yaparken belirli (pattern) kalip ifadeleri kullanabilmemizi saglar
@@ -34,7 +47,7 @@ select isim from personel WHERE isim ~~* '_e%' and isim ~~* '__%y%'
 select isim from personel WHERE isim ~~* '_e%y%'
 
 - a harfi olmayan personeli listeleyin
-select * from personel WHERE isim not like '%a%' 
+select * from personel WHERE isim not ilike '%a%' -- duzeltme ilike yerine like vardı
 
 -- 1. harfi A ve 7. harfi a olan personeli listeleyi
 select * from personel WHERE isim ~~* 'A_____a%'
