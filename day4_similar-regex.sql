@@ -1,7 +1,7 @@
 -- SELECT - SIMILAR TO - REGEX(Regular Expressions) --
 /*
 SIMILAR TO : Daha karmasik pattern(kalıp) ile sorgulama işlemi icin SIMILAR TO kullanılabilir.
-Sadece PostgreSQL de kullanılır. Buüyük kü	çük harf önemlidir
+Sadece PostgreSQL de kullanılır. Buüyük küçük harf önemlidir
 
 REGEX : Herhangi bir kod, medin içerisinde istenen yazı veya kod parçasının aranıp bulunmasını sağlayan
 kendine ait bir söz dizimi olan bir yapıdır.MySQL de(REGEXP_LIKE) olarak kullanılır
